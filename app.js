@@ -76,11 +76,11 @@ const init = async (MONGODB_URI, PORT, JWT_SECRET_KEY) => {
       ttl: 24 * 60 * 60 * 1000, // 1 hari
       isSecure: false, // HTTPS di production
       isHttpOnly: true, // Anti-XSS
-      isSameSite: "Lax", // atau "None" jika butuh cross-site (dengan HTTPS)
+      isSameSite: "None", // atau "None" jika butuh cross-site (dengan HTTPS)
       // encoding: "none", // ⬅️ penting untuk JWT! Jangan biarkan Hapi auto-encode
     },
     validate: async (request, session) => {
-      console.log(request, session);
+      console.log("session=", session);
       try {
         const decoded = jwt.verify(session, JWT_SECRET_KEY);
         if (!decoded) {
