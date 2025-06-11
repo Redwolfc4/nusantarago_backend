@@ -74,7 +74,6 @@ const authController = {
       otp,
       otpCreatedAt: new Date(),
       otpExpiredAt, //10 menit
-      otpExpiredAt, //10 menit
     });
 
     // simpan user
