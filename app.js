@@ -74,9 +74,9 @@ const init = async (MONGODB_URI, PORT, JWT_SECRET_KEY) => {
       password: PASSWORD_COOKIE,
       path: "/",
       ttl: 24 * 60 * 60 * 1000, // 1 hari
-      isSecure: true, // HTTPS di production
-      isHttpOnly: true, // Anti-XSS
-      isSameSite: "None", // atau "None" jika butuh cross-site (dengan HTTPS)
+      isSecure: NODE_ENV === "production", // HTTPS di production
+      isHttpOnly: NODE_ENV === "production", // Anti-XSS
+      isSameSite: "Lax", // cross-site (dengan HTTPS)
       // encoding: "none", // ⬅️ penting untuk JWT! Jangan biarkan Hapi auto-encode
     },
     validate: async (request, session) => {
