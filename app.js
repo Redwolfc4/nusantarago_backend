@@ -124,13 +124,13 @@ const init = async (MONGODB_URI, PORT, JWT_SECRET_KEY) => {
       }
 
       return h
-        .unstate("session")
         .response({
           statusCode: 401,
           error: "Unauthorized",
           message: originalMessage,
         })
-        .code(401);
+        .code(401)
+        .unstate("session");
     }
 
     return h.continue;
