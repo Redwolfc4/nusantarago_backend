@@ -80,6 +80,7 @@ const init = async (MONGODB_URI, PORT, JWT_SECRET_KEY) => {
       // encoding: "none", // ⬅️ penting untuk JWT! Jangan biarkan Hapi auto-encode
     },
     validate: async (request, session) => {
+      console.log(request, session);
       try {
         const decoded = jwt.verify(session, JWT_SECRET_KEY);
         if (!decoded) {
@@ -103,11 +104,13 @@ const init = async (MONGODB_URI, PORT, JWT_SECRET_KEY) => {
   // Tambahkan middleware untuk handle 401 dengan custom message
   server.ext("onPreResponse", (request, h) => {
     const response = request.response;
+    console.log(response);
     if (
       response?.isBoom &&
       response.output.statusCode === 401 &&
       !request.path.includes("/login")
     ) {
+      console.log("jalan");
       // hapus cookie dari client
       h.unstate("session");
 
