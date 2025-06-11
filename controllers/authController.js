@@ -379,13 +379,13 @@ const authController = {
     }
 
     return h
-      .unstate("session")
       .response(
         successResponse(
           "Logout Berhasil!",
           `User <b>${authNow.email}</b> berhasil keluar dari sesi`
         )
-      );
+      )
+      .unstate("session");
   },
 };
 
