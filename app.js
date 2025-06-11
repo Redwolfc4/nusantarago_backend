@@ -104,7 +104,7 @@ const init = async (MONGODB_URI, PORT, JWT_SECRET_KEY) => {
   // Tambahkan middleware untuk handle 401 dengan custom message
   server.ext("onPreResponse", (request, h) => {
     const response = request.response;
-    console.log(response);
+    console.log("response=", response);
     if (
       response?.isBoom &&
       response.output.statusCode === 401 &&
