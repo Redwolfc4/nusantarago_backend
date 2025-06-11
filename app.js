@@ -110,8 +110,6 @@ const init = async (MONGODB_URI, PORT, JWT_SECRET_KEY) => {
       !request.path.includes("/login")
     ) {
       console.log("jalan");
-      // hapus cookie dari client
-      h.unstate("session");
 
       // Ambil pesan dari payload Boom
       let originalMessage = response.output.payload.message;
@@ -126,6 +124,7 @@ const init = async (MONGODB_URI, PORT, JWT_SECRET_KEY) => {
       }
 
       return h
+        .unstate("session")
         .response({
           statusCode: 401,
           error: "Unauthorized",
