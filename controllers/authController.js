@@ -242,7 +242,8 @@ const authController = {
       .response(
         successResponse(
           "Login Berhasil!",
-          `User <b>${username}</b> berhasil melakukan login`
+          `User <b>${username}</b> berhasil melakukan login`,
+          { token }
         )
       )
       .state("session", token); // <--- pastikan pakai .state()
@@ -311,7 +312,7 @@ const authController = {
       and assigning it the value of the `username` variable. This is a shorthand way of creating an
       object with a property that has the same name as the variable and assigning it the value of
       that variable. */
-      set = {
+      let set = {
         username,
       };
 
@@ -329,7 +330,7 @@ const authController = {
           password: await hashPasswordBcrypt(password),
         };
       } else {
-        if (countExistingUser > 0) {
+        if (username !== user.username && countExistingUser > 0) {
           throw new Error("Username tidak boleh sama");
         }
       }
@@ -377,15 +378,14 @@ const authController = {
       );
     }
 
-    // Hapus cookie auth/token
-    h.unstate("session");
-
-    return h.response(
-      successResponse(
-        "Logout Berhasil!",
-        `User <b>${authNow.email}</b> berhasil keluar dari sesi`
-      )
-    );
+    return h
+      .unstate("session")
+      .response(
+        successResponse(
+          "Logout Berhasil!",
+          `User <b>${authNow.email}</b> berhasil keluar dari sesi`
+        )
+      );
   },
 };
 
