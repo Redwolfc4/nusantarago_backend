@@ -53,7 +53,7 @@ const authController = {
     // encrypt password
     let hashedPassword;
     try {
-      response = await hashPasswordBcrypt(password);
+      const response = await hashPasswordBcrypt(password);
       hashedPassword = response;
     } catch (err) {
       return Boom.badRequest(err);
