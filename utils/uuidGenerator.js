@@ -19,7 +19,7 @@ async function stringToUUID(str) {
  * @param {string} uuid - The UUID string to be converted back into its original string.
  * @returns {string} - The original string.
  */
-async function uuidToString(uuid) {
+async function uuidToString(encoded) {
   return Buffer.from(encoded, "base64url").toString("utf-8");
 }
 
