@@ -138,7 +138,7 @@ const authController = {
     // ubah uuid searchparams jadi string email
     const responseString = await uuidToString(searchParams);
     console.log(responseString);
-    const email = responseString + "@gmail.com";
+    const email = responseString;
 
     console.log(email);
 
