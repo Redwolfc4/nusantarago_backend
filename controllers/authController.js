@@ -36,6 +36,8 @@ const authController = {
       );
     }
 
+    // cek username sama sudah ada atau belum
+    const existingUsername = await User.findOne({ username });
     if (existingUsername) {
       if (existingUsername.verified === true) {
         return Boom.badRequest("Username sudah terdaftar");
