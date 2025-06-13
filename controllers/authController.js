@@ -38,7 +38,7 @@ const authController = {
 
     // cek username sama sudah ada atau belum
     const existingUsername = await User.findOne({ username });
-    if (existingUsername) {
+    if (existingUsername !== null) {
       if (existingUsername.verified === true) {
         return Boom.badRequest("Username sudah terdaftar");
       }
@@ -47,7 +47,7 @@ const authController = {
 
     // cek email sama sudah ada atau belum
     const existingEmail = await User.findOne({ email });
-    if (existingEmail) {
+    if (existingEmail !== null) {
       if (existingEmail.verified === true) {
         return Boom.badRequest("Username sudah terdaftar");
       }
